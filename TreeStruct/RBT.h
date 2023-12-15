@@ -604,25 +604,27 @@ void RBTree<T>::removeFixUp(RBTNode<T> *&root, RBTNode<T> *node, RBTNode<T> *par
         if (parent->left == node)
         {
             other = parent->right;
-            if (rb_is_red(other)) // Case 1: x's cousin w is red
+            if (rb_is_red(other))
             {
+                // Case 1: x's cousin w is red
                 rb_set_black(other);
                 rb_set_red(parent);
                 leftRotate(root, parent);
                 other = parent->right;
             }
             if ((!other->left || rb_is_black(other->left)) &&
-                (!other->right || rb_is_black(other->right))) // Case 2: x's cousin w is black, and w's two children are black
+                (!other->right || rb_is_black(other->right)))
             {
+                // Case 2: x's cousin w is black, and w's two children are black
                 rb_set_red(other);
                 node = parent;
                 parent = rb_parent(node);
             }
             else
             {
-                if (!other->right || rb_is_black(other->right)) // Case 3: x's cousin w is black, w's left child is red, and w's right child is black
+                if (!other->right || rb_is_black(other->right))
                 {
-
+                    // Case 3: x's cousin w is black, w's left child is red, and w's right child is black
                     rb_set_black(other->left);
                     rb_set_red(other);
                     rightRotate(root, other);

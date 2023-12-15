@@ -140,7 +140,7 @@ void AVLTree<T>::insert(AVLNode<T> *&node, T key)
     while (node != nullptr)
     {
         parent = node;
-        if (key < node->key)
+        if (key <= node->key)
         {
             node = node->left;
             leftChild = true;
